@@ -7,16 +7,16 @@ export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}
   @Get()
   getMessages() {
-    return this.messagesService.listMessages();
+    return this.messagesService.findAll();
   }
 
   @Post()
   createMessage(@Body() createMessageDto: CreateMessageDto) {
-    console.log(createMessageDto);
+    return this.messagesService.create(createMessageDto.content);
   }
 
   @Get(':id')
-  getMessage(@Param() id: string) {
-    console.log(id);
+  getMessage(@Param('id') id: string) {
+    return this.messagesService.findOne(id);
   }
 }

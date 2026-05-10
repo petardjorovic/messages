@@ -4,7 +4,15 @@ import { MessagesRepository } from './messages.repository';
 @Injectable()
 export class MessagesService {
   constructor(private readonly messagesRepository: MessagesRepository) {}
-  listMessages(): Promise<string> {
-    return this.messagesRepository.listMessages();
+  findAll() {
+    return this.messagesRepository.findAll();
+  }
+
+  findOne(id: string) {
+    return this.messagesRepository.findOne(id);
+  }
+
+  create(content: string) {
+    return this.messagesRepository.create(content);
   }
 }

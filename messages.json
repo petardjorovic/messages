@@ -1,11 +1,6 @@
 {
-  "25": {
-    "content": "Message 1"
-  },
-  "26": {
-    "content": "Message 1"
-  },
-  "27": {
-    "content": "Message 1"
-  }
+  "25": { "content": "Message 25", "id": "25" },
+  "26": { "content": "Message 26", "id": "26" },
+  "27": { "content": "Message 27", "id": "27" },
+  "652": { "content": "new message", "id": 652 }
 }
