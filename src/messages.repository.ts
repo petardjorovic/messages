@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { readFile, writeFile } from 'fs/promises';
 
 @Injectable()
@@ -8,7 +8,13 @@ export class MessagesRepository {
 
     const messages = JSON.parse(content);
 
-    return messages[id];
+    const msg = messages[id];
+
+    if (!msg) {
+      throw new NotFoundException(`Message with given id not found`);
+    }
+
+    return msg;
   }
 
   async findAll() {
@@ -19,7 +25,7 @@ export class MessagesRepository {
     return messages;
   }
 
-  async create(content: string) {
+  async create(content: string): Promise<string> {
     const oldMessages = await readFile('messages.json', 'utf-8');
 
     const messages = JSON.parse(oldMessages);
