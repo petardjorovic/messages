@@ -1,4 +1,4 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Administrator } from './entities/Administrator';
 
@@ -13,5 +13,10 @@ export class AppController {
   @Get('admins')
   getAdmins(): Promise<Administrator[]> {
     return this.appService.getAll();
+  }
+
+  @Get('admins/:id')
+  getById(@Param('id', ParseIntPipe) id: number) {
+    return this.appService.getById(id);
   }
 }
